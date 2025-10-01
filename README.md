@@ -23,7 +23,7 @@ This extension is not available in the extensions library. You can build and ins
 ## Sample
 
 <div align="center">
-    <img src="https://github.com/MichaelCurrin/llm-commit-msg-vs-code/raw/docs/sample.png"
+    <img src="https://raw.githubusercontent.com/MichaelCurrin/llm-commit-msg-vs-code/main/sample.png"
         alt="sample screenshot"
         width="300" />
 </div>
