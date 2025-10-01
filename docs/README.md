@@ -1,5 +1,8 @@
 # LLM Commit Message documentation
 
+[![MichaelCurrin - llm-commit-msg-vs-code](https://img.shields.io/static/v1?label=MichaelCurrin&message=llm-commit-msg-vs-code&color=blue&logo=github)](https://github.com/MichaelCurrin/llm-commit-msg-vs-code "Go to GitHub repo")
+
+
 This VS Code extension generates high‑quality Git commit messages using a local LLM exposed via an OpenAI‑compatible API (e.g. Ollama).
 
 - [Installation](installation.md)
