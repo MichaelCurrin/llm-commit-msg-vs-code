@@ -20,7 +20,12 @@ This extension is not available in the extensions library. You can build and ins
 
 [Docs website](https://michaelcurrin.github.io/llm-commit-msg-vs-code/)
 
-## Sample
+## Quickstart
+
+1. Ensure Ollama in installed.
+1. In VS Code, open a Git repository and stage your changes.
+1. Click `Generate Commit Message (LLM)` in the Source Control title bar (or run the command via the Command Palette).
+1. Edit if needed, then commit.
 
 <div align="center">
     <img src="https://raw.githubusercontent.com/MichaelCurrin/llm-commit-msg-vs-code/main/sample.png"

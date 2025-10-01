@@ -5,17 +5,9 @@
 
 This VS Code extension generates high‑quality Git commit messages using a local LLM exposed via an OpenAI‑compatible API (e.g. Ollama).
 
-- [Installation](installation.md)
+- [Installation](installation.md) - setup and run for extension users
 - [Usage](usage.md)
 - [Development](development/)
-
-## Quickstart
-
-1. Ensure Ollama.
-1. In VS Code, open a Git repository and stage your changes.
-1. Click `Generate Commit Message (LLM)` in the Source Control title bar (or run the command via the Command Palette).
-1. Edit if needed, then commit.
-
 
 ## Notes
 
