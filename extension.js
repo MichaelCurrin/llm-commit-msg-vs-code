@@ -4,6 +4,38 @@ const { promisify } = require('node:util');
 const asyncExec = promisify(exec);
 
 /**
+ * System prompt used for guiding the LLM's behavior.
+ *
+ * @type {string}
+ */
+const SYSTEM_PROMPT = 'You are a helpful assistant that writes high-quality Git commit messages.';
+
+/**
+ * Template for the user prompt. The token {{DIFF}} will be replaced with the
+ * unified git diff content at runtime.
+ *
+ * @type {string}
+ */
+const USER_PROMPT_TEMPLATE = `Given the following unified git diff, write a clear, conventional commit message.
+Provide a concise title (<= 72 chars).
+Include a brief body with bullet points when helpful.
+Use imperative mood and explain the "why" when evident from the diff.
+
+<START_OF_FORMAT>
+<type>(<scope>): <subject>
+<BLANK LINE>
+<body>
+<END_OF_FORMAT>
+
+<START_OF_DIFF>
+\`\`\`diff
+{{DIFF}}
+\`\`\`
+<END_OF_DIFF>
+`;
+
+
+/**
  * Return VS Code Git API v1 if available.
  *
  * @returns {import('vscode').Extension<any>["exports"] | undefined} Git API exports or undefined.
@@ -79,17 +111,8 @@ async function getRepositoryDiff(api) {
  */
 async function generateCommitMessageWithLLM(endpoint, model, diff) {
 	const trimmed = diff.length > 60_000 ? `${diff.slice(0, 60_000)}\n... [truncated]` : diff;
-	const system = 'You are a helpful assistant that writes high-quality Git commit messages.';
-	const user = [
-		'Given the following unified git diff, write a clear, conventional commit message.',
-		'- Provide a concise title (<= 72 chars).',
-		'- Include a brief body with bullet points when helpful.',
-		'- Use imperative mood and explain the "why" when evident from the diff.',
-		'',
-		'```diff',
-		trimmed,
-		'```',
-	].join('\n');
+	const system = SYSTEM_PROMPT;
+	const user = USER_PROMPT_TEMPLATE.replace('{{DIFF}}', trimmed);
 
 	const res = await fetch(`${endpoint}/chat/completions`, {
 		method: 'POST',
