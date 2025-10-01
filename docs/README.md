@@ -1,4 +1,4 @@
-# LLM Commit Message documentation
+# Documentation
 
 [![MichaelCurrin - llm-commit-msg-vs-code](https://img.shields.io/static/v1?label=MichaelCurrin&message=llm-commit-msg-vs-code&color=blue&logo=github)](https://github.com/MichaelCurrin/llm-commit-msg-vs-code "Go to GitHub repo")
 
