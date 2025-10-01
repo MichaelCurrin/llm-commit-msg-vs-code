@@ -25,7 +25,8 @@
     "commands": [
       {
         "command": "llm-commit-msg.generateCommitMessage",
-        "title": "Generate Commit Message (LLM)"
+        "title": "Generate Commit Msg",
+        "icon": "$(git-commit)"
       }
     ],
     "menus": {

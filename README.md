@@ -10,6 +10,8 @@ This extensions adds a button to the Git extension sidebar - clicking it sends a
 
 - This extension is not available in the extensions library. You can build and install it locally though.
 - This was developed with Cursor quickly, the code and quality has not been verified.
+- This extension has only been tested in VS Code and not in Cursor.
+- The extension button is a long name - this needs to be shortened or made into an icon.
 
 ## Benefits
 
