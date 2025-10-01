@@ -1,3 +1,6 @@
+---
+permalink: /development
+---
 # Development
 
 - [Back to user docs](../)
