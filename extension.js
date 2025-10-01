@@ -4,19 +4,6 @@ const { promisify } = require("node:util");
 const asyncExec = promisify(exec);
 
 /**
- * Default API endpoint when not configured.
- *
- * @type {string}
- */
-const DEFAULT_ENDPOINT = "http://localhost:11434/v1";
-
-/**
- * Default model name when not configured.
- *
- * @type {string}
- */
-const DEFAULT_MODEL = "gemma3";
-/**
  * System prompt used for guiding the LLM's behavior.
  *
  * @type {string}
@@ -157,8 +144,8 @@ async function generateCommitMessageWithLLM(endpoint, model, diff) {
   const firstChoice = Array.isArray(choices) ? choices[0] : undefined;
   const content =
     firstChoice &&
-    firstChoice.message &&
-    typeof firstChoice.message.content === "string"
+      firstChoice.message &&
+      typeof firstChoice.message.content === "string"
       ? firstChoice.message.content
       : undefined;
   if (!content) {
@@ -220,8 +207,15 @@ async function generateAndApplyCommitMessage() {
     );
   }
   const config = vscode.workspace.getConfiguration("llmCommitMsg");
-  const endpoint = config.get("endpoint", DEFAULT_ENDPOINT);
-  const model = config.get("model", DEFAULT_MODEL);
+  /** @type {string | undefined} */
+  const endpoint = config.get("endpoint");
+  /** @type {string | undefined} */
+  const model = config.get("model");
+  if (!endpoint || !model) {
+    throw new Error(
+      "LLM Commit Message settings are not configured. Please set endpoint and model in Settings.",
+    );
+  }
   const message = await generateCommitMessageWithLLM(endpoint, model, diff);
   if (repo?.inputBox) {
     repo.inputBox.value = message;
@@ -273,7 +267,7 @@ function activate(context) {
  *
  * @returns {void} Nothing.
  */
-function deactivate() {}
+function deactivate() { }
 
 module.exports = {
   activate,
