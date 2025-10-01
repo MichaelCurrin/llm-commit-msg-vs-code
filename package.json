@@ -3,9 +3,19 @@
   "displayName": "llm-commit-msg",
   "description": "Generate commit message using a local LLM",
   "version": "0.0.1",
+  "publisher": "michaelcurrin",
   "engines": {
     "vscode": "^1.104.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MichaelCurrin/llm-commit-msg-vs-code"
+  },
+  "homepage": "https://michaelcurrin.github.io/llm-commit-msg-vs-code/",
+  "bugs": {
+    "url": "https://github.com/MichaelCurrin/llm-commit-msg-vs-code/issues"
+  },
+  "license": "MIT",
   "categories": [
     "Other"
   ],
@@ -44,15 +54,20 @@
   },
   "scripts": {
     "lint": "eslint .",
+    "fmt": "prettier --write *.js",
     "pretest": "npm run lint",
-    "test": "vscode-test"
+    "test": "vscode-test",
+    "build": "vsce package --out build/llm-commit-msg.vsix",
+    "ext": "npm run build && code --install-extension build/llm-commit-msg.vsix --force"
   },
   "devDependencies": {
-    "@types/vscode": "^1.104.0",
     "@types/mocha": "^10.0.10",
     "@types/node": "22.x",
-    "eslint": "^9.34.0",
+    "@types/vscode": "^1.104.0",
     "@vscode/test-cli": "^0.0.11",
-    "@vscode/test-electron": "^2.5.2"
+    "@vscode/test-electron": "^2.5.2",
+    "@vscode/vsce": "^3.6.2",
+    "eslint": "^9.34.0",
+    "prettier": "^3.6.2"
   }
 }
