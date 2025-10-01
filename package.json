@@ -1,0 +1,58 @@
+{
+  "name": "llm-commit-msg",
+  "displayName": "llm-commit-msg",
+  "description": "Generate commit message using a local LLM",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.104.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "llm-commit-msg.generateCommitMessage",
+        "title": "Generate Commit Message (LLM)"
+      }
+    ],
+    "menus": {
+      "scm/title": [
+        {
+          "command": "llm-commit-msg.generateCommitMessage",
+          "group": "navigation@9"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "LLM Commit Message",
+      "properties": {
+        "llmCommitMsg.endpoint": {
+          "type": "string",
+          "default": "http://localhost:11434/v1",
+          "description": "Base URL of the OpenAI-compatible API (Ollama)."
+        },
+        "llmCommitMsg.model": {
+          "type": "string",
+          "default": "gemma3",
+          "description": "Model name to use when generating messages."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.104.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "eslint": "^9.34.0",
+    "@vscode/test-cli": "^0.0.11",
+    "@vscode/test-electron": "^2.5.2"
+  }
+}
