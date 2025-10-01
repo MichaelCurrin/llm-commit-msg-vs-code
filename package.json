@@ -2,7 +2,7 @@
   "name": "llm-commit-msg",
   "displayName": "llm-commit-msg",
   "description": "Generate commit message using a local LLM",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "publisher": "michaelcurrin",
   "engines": {
     "vscode": "^1.104.0"
