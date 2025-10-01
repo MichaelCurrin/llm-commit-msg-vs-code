@@ -1,5 +1,5 @@
-# LLM Commit Message (extension)
-> Generate commit messages in VS Code using a local LLM
+# LLM Commit Message (VS Code)
+> Generate a commit message in VS Code Git sidebar using a local LLM
 
 [![Made with JavaScript](https://img.shields.io/badge/Made_with-JavaScript-blue?logo=javascript&logoColor=white)](https://www.javascript.com/ "Go to JavaScript homepage")
 [![License](https://img.shields.io/badge/License-MIT-blue)](#license "Go to License section")
@@ -9,7 +9,7 @@ This extensions adds a button to the Git extension sidebar - clicking it sends a
 ## Benefits
 
 - Free (does not require ChatGPT account and subscription)
-- Secure (does not send your code over the internet)
+- Secure (does not send your code over the internet like the builtin button or ChatGPT-related extensions)
 - Choose from a server and model
 
 ## Documentation
