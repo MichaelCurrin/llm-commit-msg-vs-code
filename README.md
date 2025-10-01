@@ -8,7 +8,8 @@ This extensions adds a button to the Git extension sidebar - clicking it sends a
 
 ## Note
 
-This extension is not available in the extensions library. You can build and install it locally though.
+- This extension is not available in the extensions library. You can build and install it locally though.
+- This was developed with Cursor quickly, the code and quality has not been verified.
 
 ## Benefits
 
