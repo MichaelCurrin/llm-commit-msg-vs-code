@@ -1,27 +1,29 @@
 # Installation
+> Guide for end users to build and install the extension locally.
 
-# Prerequisites
+## Prerequisites
 
 - **VS Code** `^1.104.0`.
-- **Git** installed and a Git repository opened in VS Code.
-- **Ollama** (or another OpenAI‑compatible server) running and reachable at `http://localhost:11434/v1`.
+- **Node.js** and **npm**.
+- Optional: **Ollama** (or any OpenAI‑compatible server) if you plan to use the extension.
 
-## Ollama setup (example)
+## Steps
 
-- Install Ollama and ensure the OpenAI‑compatible endpoint is running.
-- Pull or run a model that matches your settings, e.g. `gemma3`:
-  - `ollama pull gemma3`
-  - `ollama run gemma3`
+Clone the repo.
 
-## Configure the extension
+Install dependencies:
 
-- Open VS Code Settings and search for `LLM Commit Message`.
-- Set:
-  - `llmCommitMsg.endpoint` (default `http://localhost:11434/v1`).
-  - `llmCommitMsg.model` (default `gemma3`).
+```bash
+npm ci
+```
 
-Install from source (development)
+Package the extension (creates a `.vsix` in the current directory):
 
-- Clone this repository.
-- Open it in VS Code and press `F5` to launch an Extension Development Host.
-- In the Extension Development Host, open a Git repository and use the command from the Source Control view (see Usage).
+```bash
+npm run ext
+```
+
+## Run for development (no install)
+
+- Open the repo in VS Code and press `F5` to launch an Extension Development Host.
+- Use the command palette or Source Control view to trigger the extension command.

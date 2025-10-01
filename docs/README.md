@@ -2,9 +2,9 @@ LLM Commit Message – Documentation
 
 This VS Code extension generates high‑quality Git commit messages using a local LLM exposed via an OpenAI‑compatible API (e.g. Ollama).
 
-- [Installation](docs/installation.md)
-- [Usage](docs/usage.md)
-
+- [Installation](installation.md)
+- [Usage](usage.md)
+- [Development](development/)
 
 ## Quickstart
 

@@ -6,6 +6,10 @@
 
 This extensions adds a button to the Git extension sidebar - clicking it sends a Git diff to a local LLM (default Ollama) and uses a generated commit message in the box.
 
+## Note
+
+This extension is not available in the extensions library. You can build and install it locally though.
+
 ## Benefits
 
 - Free (does not require ChatGPT account and subscription)
@@ -14,11 +18,15 @@ This extensions adds a button to the Git extension sidebar - clicking it sends a
 
 ## Documentation
 
-See [docs](/docs/) for more details.
+[Docs website](https://michaelcurrin.github.io/llm-commit-msg-vs-code/)
 
 ## Sample
 
-![SCM action button](./sample.png)
+<div align="center">
+    <img src="https://github.com/MichaelCurrin/llm-commit-msg-vs-code/raw/docs/sample.png"
+        alt="sample screenshot"
+        width="300" />
+</div>
 
 ## Related projects
 
@@ -27,4 +35,4 @@ See [docs](/docs/) for more details.
 
 ## License
 
-Licensed under [MIT](/LICENSE).
+Released under [MIT](/LICENSE) by [@MichaelCurrin](https://github.com/MichaelCurrin).
