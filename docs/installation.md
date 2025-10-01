@@ -3,13 +3,18 @@
 
 ## Prerequisites
 
-- **VS Code** `^1.104.0`.
+- **VS Code**
 - **Node.js** and **npm**.
-- Optional: **Ollama** (or any OpenAI‑compatible server) if you plan to use the extension.
+- **Ollama** (or any OpenAI‑compatible server)
 
 ## Steps
 
 Clone the repo.
+
+```sh
+git clone https://github.com/MichaelCurrin/llm-commit-msg-vs-code
+cd llm-commit-msg-vs-code
+```
 
 Install dependencies:
 

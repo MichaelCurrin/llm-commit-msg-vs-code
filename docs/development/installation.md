@@ -2,7 +2,7 @@
 
 # Prerequisites
 
-- **VS Code** `^1.104.0`.
+- **VS Code**
 - **Git** installed and a Git repository opened in VS Code.
 - **Ollama** (or another OpenAI‑compatible server) running and reachable at `http://localhost:11434/v1`.
 
