@@ -1,6 +1,9 @@
 # LLM Commit Message (extension)
 > Generate commit messages in VS Code using a local LLM
 
+[![Made with JavaScript](https://img.shields.io/badge/Made_with-JavaScript-blue?logo=javascript&logoColor=white)](https://www.javascript.com/ "Go to JavaScript homepage")
+[![License](https://img.shields.io/badge/License-MIT-blue)](#license "Go to License section")
+
 This extensions adds a button to the Git extension sidebar - clicking it sends a Git diff to a local LLM (default Ollama) and uses a generated commit message in the box.
 
 ## Benefits
