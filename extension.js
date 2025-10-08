@@ -118,7 +118,7 @@ async function getRepositoryDiff(api) {
  */
 async function generateCommitMessageWithLLM(endpoint, model, diff) {
   const trimmed =
-    diff.length > 60_000 ? `${diff.slice(0, 60_000)}\n... [truncated]` : diff;
+    diff.length > 60_000 ? `${diff.slice(0, 60_000)}\n [truncated]` : diff;
   const system = SYSTEM_PROMPT;
   const user = USER_PROMPT_TEMPLATE.replace("{{DIFF}}", trimmed);
 
@@ -187,6 +187,7 @@ function stripOuterCodeFence(text) {
 
 /**
  * Generate and set the commit message for the active repository.
+ * Logs progress using console debug/info/error messages.
  *
  * @returns {Promise<void>} Nothing.
  */
@@ -195,6 +196,7 @@ async function generateAndApplyCommitMessage() {
   if (!api) {
     throw new Error("VS Code Git extension not available.");
   }
+  console.debug("[llm-commit-msg] Preparing diff");
   let { repo, diff } = await getRepositoryDiff(api);
   if (typeof diff !== "string") {
     // Ensure a string diff by falling back to shell git.
@@ -206,6 +208,7 @@ async function generateAndApplyCommitMessage() {
       "No changes to generate a commit message from. Stage changes first.",
     );
   }
+  console.debug("[llm-commit-msg] Loading settings");
   const config = vscode.workspace.getConfiguration("llmCommitMsg");
   /** @type {string | undefined} */
   const endpoint = config.get("endpoint");
@@ -216,14 +219,18 @@ async function generateAndApplyCommitMessage() {
       "LLM Commit Message settings are not configured. Please set endpoint and model in Settings.",
     );
   }
+  console.info(`[llm-commit-msg] Contacting LLM with details: endpoint=${endpoint} model=${model}`);
   const message = await generateCommitMessageWithLLM(endpoint, model, diff);
+  console.debug("[llm-commit-msg] Applying message");
   if (repo?.inputBox) {
     repo.inputBox.value = message;
+    console.info("[llm-commit-msg] Commit message applied to Source Control input box.");
   } else {
     await vscode.env.clipboard.writeText(message);
     vscode.window.showInformationMessage(
       "Commit message copied to clipboard (no repository input box found).",
     );
+    console.info("[llm-commit-msg] Commit message copied to clipboard (no input box).");
   }
 }
 
@@ -240,23 +247,29 @@ function activate(context) {
   const disposable = vscode.commands.registerCommand(
     "llm-commit-msg.generateCommitMessage",
     async () => {
-      await vscode.window.withProgress(
-        {
-          location: vscode.ProgressLocation.Notification,
-          title: "Generating commit message with LLM...",
-          cancellable: false,
-        },
-        async () => {
-          try {
-            await generateAndApplyCommitMessage();
-            vscode.window.showInformationMessage("Generated commit message.");
-          } catch (error) {
-            const msg = error instanceof Error ? error.message : String(error);
-            vscode.window.showErrorMessage(msg);
-          }
-        },
-      );
+      const start = Date.now();
+      let errorMsg;
+
+      try {
+        await generateAndApplyCommitMessage();
+      } catch (error) {
+        errorMsg = error instanceof Error ? error.message : String(error);
+      }
+
+      const elapsedMs = Date.now() - start;
+      const seconds = Math.max(0, Math.round(elapsedMs / 100) / 10);
+
+      if (errorMsg) {
+        vscode.window.showErrorMessage(
+          `Generate commit message - failure (${seconds}s). Error: ${errorMsg}`
+        );
+      } else {
+        vscode.window.showInformationMessage(
+          `Generate commit message - success (${seconds}s)`
+        );
+      }
     },
+
   );
 
   context.subscriptions.push(disposable);
