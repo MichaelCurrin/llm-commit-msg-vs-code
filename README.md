@@ -25,8 +25,10 @@ This extensions adds a button to the Git extension sidebar - clicking it sends a
 
 ## Quickstart
 
-1. Ensure Ollama in installed.
-1. In VS Code, open a Git repository and stage your changes.
+1. Get [Ollama](https://michaelcurrin.github.io/dev-cheatsheets/cheatsheets/artificial-intelligence/ollama/) installed.
+1. Open VS Code.
+1. Open a Git repository.
+1. Stage your changes.
 1. Click `Generate Commit Message (LLM)` in the Source Control title bar (or run the command via the Command Palette).
 1. Edit if needed, then commit.
 
