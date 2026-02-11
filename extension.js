@@ -87,7 +87,6 @@ async function getRepositoryDiff(api) {
   }
   const repo = api.repositories[0];
 
-  // Prefer the API methods when available.
   if (typeof repo.diffWithHEAD === "function") {
     const diff = await repo.diffWithHEAD();
     if (typeof diff === "string") {
@@ -101,7 +100,6 @@ async function getRepositoryDiff(api) {
     }
   }
 
-  // Fallback to shelling out to git in the workspace.
   const cwd = repo.rootUri?.fsPath;
   const diff = await gitDiffFallback(cwd || process.cwd(), true);
   return { repo, diff };
